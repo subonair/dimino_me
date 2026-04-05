@@ -1,0 +1,426 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Base
+  title="Политика конфиденциальности"
+  description="Политика конфиденциальности сайта dimino.me в соответствии с требованиями Федерального закона № 152-ФЗ «О персональных данных»"
+>
+  <Header />
+
+  <main class="max-w-3xl mx-auto px-4 py-10">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Политика конфиденциальности</h1>
+    <p class="text-sm text-gray-400 mb-10">Редакция от 05 апреля 2026 г.</p>
+
+    <!-- 1. Общие положения -->
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold text-gray-900 mb-4">1. Общие положения</h2>
+      <p class="text-gray-700 leading-relaxed mb-3">
+        Настоящая Политика конфиденциальности (далее — «Политика») определяет порядок обработки и
+        защиты персональных данных пользователей сайта <strong>dimino.me</strong> (далее — «Сайт»).
+      </p>
+      <p class="text-gray-700 leading-relaxed mb-3">
+        Политика разработана в соответствии с требованиями Федерального закона от 27.07.2006
+        № 152-ФЗ «О персональных данных», Конституцией Российской Федерации (ст. 24), а также иными
+        применимыми нормативными правовыми актами Российской Федерации в области защиты персональных
+        данных.
+      </p>
+      <p class="text-gray-700 leading-relaxed">
+        Используя Сайт, вы выражаете согласие с настоящей Политикой. Если вы не согласны с её
+        условиями, пожалуйста, прекратите использование Сайта.
+      </p>
+    </section>
+
+    <!-- 2. Оператор -->
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold text-gray-900 mb-4">2. Оператор персональных данных</h2>
+      <div class="bg-gray-50 rounded-xl p-5 text-gray-700 leading-relaxed space-y-1">
+        <p><strong>Наименование:</strong> ООО «Флексайтс»</p>
+        <p><strong>ИНН:</strong> [ИНН]</p>
+        <p><strong>ОГРН:</strong> [ОГРН]</p>
+        <p><strong>Юридический адрес:</strong> [Юридический адрес]</p>
+        <p>
+          <strong>Контакт:</strong>{' '}
+          <a href="https://t.me/subonair" class="text-accent hover:underline">@subonair</a> в Telegram
+        </p>
+      </div>
+      <p class="text-gray-700 leading-relaxed mt-3">
+        Далее по тексту — «Оператор».
+      </p>
+    </section>
+
+    <!-- 3. Основные понятия -->
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold text-gray-900 mb-4">3. Основные понятия</h2>
+      <dl class="space-y-4">
+        <div>
+          <dt class="font-medium text-gray-900">Персональные данные (ПД)</dt>
+          <dd class="text-gray-700 mt-1 leading-relaxed">
+            Любая информация, относящаяся прямо или косвенно к определённому или определяемому
+            физическому лицу (субъекту персональных данных).
+          </dd>
+        </div>
+        <div>
+          <dt class="font-medium text-gray-900">Оператор</dt>
+          <dd class="text-gray-700 mt-1 leading-relaxed">
+            Государственный орган, муниципальный орган, юридическое или физическое лицо,
+            организующее и (или) осуществляющее обработку персональных данных.
+          </dd>
+        </div>
+        <div>
+          <dt class="font-medium text-gray-900">Пользователь</dt>
+          <dd class="text-gray-700 mt-1 leading-relaxed">
+            Физическое лицо, посещающее Сайт и (или) оставляющее на нём свои персональные данные.
+          </dd>
+        </div>
+        <div>
+          <dt class="font-medium text-gray-900">Обработка персональных данных</dt>
+          <dd class="text-gray-700 mt-1 leading-relaxed">
+            Любое действие (операция) или совокупность действий с персональными данными: сбор,
+            запись, систематизация, накопление, хранение, уточнение, извлечение, использование,
+            передача, обезличивание, блокирование, удаление, уничтожение.
+          </dd>
+        </div>
+        <div>
+          <dt class="font-medium text-gray-900">Cookie (куки)</dt>
+          <dd class="text-gray-700 mt-1 leading-relaxed">
+            Небольшие текстовые файлы, размещаемые на устройстве пользователя браузером для
+            хранения пользовательских предпочтений и данных сессии.
+          </dd>
+        </div>
+        <div>
+          <dt class="font-medium text-gray-900">IP-адрес</dt>
+          <dd class="text-gray-700 mt-1 leading-relaxed">
+            Уникальный сетевой адрес устройства пользователя в сети Интернет, автоматически
+            передаваемый браузером при обращении к Сайту.
+          </dd>
+        </div>
+      </dl>
+    </section>
+
+    <!-- 4. Состав собираемых персональных данных -->
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold text-gray-900 mb-4">4. Состав собираемых персональных данных</h2>
+      <p class="text-gray-700 leading-relaxed mb-4">
+        Оператор может обрабатывать следующие категории данных:
+      </p>
+      <ul class="space-y-3 text-gray-700">
+        <li class="flex gap-3">
+          <span class="mt-1 shrink-0 w-2 h-2 rounded-full bg-gray-400 self-start mt-2"></span>
+          <span>
+            <strong>Технические данные:</strong> IP-адрес, тип и версия браузера, операционная
+            система, разрешение экрана, страницы перехода и выхода, время и дата визита — собираются
+            автоматически при каждом посещении Сайта.
+          </span>
+        </li>
+        <li class="flex gap-3">
+          <span class="mt-1 shrink-0 w-2 h-2 rounded-full bg-gray-400 self-start mt-2"></span>
+          <span>
+            <strong>Файлы cookie:</strong> сессионные и долгосрочные cookie, устанавливаемые Сайтом
+            и сервисом Яндекс.Метрика (идентификатор счётчика 108376892).
+          </span>
+        </li>
+        <li class="flex gap-3">
+          <span class="mt-1 shrink-0 w-2 h-2 rounded-full bg-gray-400 self-start mt-2"></span>
+          <span>
+            <strong>Данные форм обратной связи</strong> (при наличии): имя, адрес электронной
+            почты, номер телефона — только в случае, если пользователь самостоятельно заполняет
+            соответствующие формы.
+          </span>
+        </li>
+      </ul>
+      <p class="text-gray-700 leading-relaxed mt-4">
+        Оператор не собирает специальные категории персональных данных (расовая и национальная
+        принадлежность, политические взгляды, религиозные убеждения, состояние здоровья и т.п.).
+      </p>
+    </section>
+
+    <!-- 5. Цели обработки -->
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold text-gray-900 mb-4">5. Цели обработки персональных данных</h2>
+      <ul class="space-y-3 text-gray-700">
+        <li class="flex gap-3">
+          <span class="shrink-0 w-2 h-2 rounded-full bg-gray-400 self-start mt-2"></span>
+          <span>Обеспечение корректной работы Сайта и его технической поддержки.</span>
+        </li>
+        <li class="flex gap-3">
+          <span class="shrink-0 w-2 h-2 rounded-full bg-gray-400 self-start mt-2"></span>
+          <span>
+            Статистический анализ посещаемости и поведения пользователей с использованием сервиса
+            Яндекс.Метрика (счётчик id=108376892) в целях улучшения качества контента и
+            пользовательского опыта.
+          </span>
+        </li>
+        <li class="flex gap-3">
+          <span class="shrink-0 w-2 h-2 rounded-full bg-gray-400 self-start mt-2"></span>
+          <span>
+            Обработка обращений пользователей, поступивших через формы обратной связи.
+          </span>
+        </li>
+        <li class="flex gap-3">
+          <span class="shrink-0 w-2 h-2 rounded-full bg-gray-400 self-start mt-2"></span>
+          <span>
+            Исполнение требований законодательства Российской Федерации.
+          </span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- 6. Правовые основания -->
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold text-gray-900 mb-4">6. Правовые основания обработки</h2>
+      <p class="text-gray-700 leading-relaxed mb-4">
+        Обработка персональных данных осуществляется на следующих правовых основаниях:
+      </p>
+      <ul class="space-y-3 text-gray-700">
+        <li class="flex gap-3">
+          <span class="shrink-0 w-2 h-2 rounded-full bg-gray-400 self-start mt-2"></span>
+          <span>
+            <strong>Согласие субъекта</strong> — п. 1 ч. 1 ст. 6 Федерального закона № 152-ФЗ
+            «О персональных данных»: обработка осуществляется с согласия пользователя, выраженного
+            путём продолжения использования Сайта и принятия настоящей Политики.
+          </span>
+        </li>
+        <li class="flex gap-3">
+          <span class="shrink-0 w-2 h-2 rounded-full bg-gray-400 self-start mt-2"></span>
+          <span>
+            <strong>Законный интерес оператора</strong> — п. 5 ч. 1 ст. 6 Федерального закона
+            № 152-ФЗ: обработка необходима для достижения законных целей Оператора при условии, что
+            при этом не нарушаются права и свободы субъектов персональных данных.
+          </span>
+        </li>
+        <li class="flex gap-3">
+          <span class="shrink-0 w-2 h-2 rounded-full bg-gray-400 self-start mt-2"></span>
+          <span>
+            <strong>Конституция РФ, ст. 24</strong>: сбор, хранение, использование и
+            распространение информации о частной жизни лица без его согласия не допускаются.
+          </span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- 7. Условия обработки -->
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold text-gray-900 mb-4">7. Условия обработки персональных данных</h2>
+      <p class="text-gray-700 leading-relaxed mb-3">
+        Оператор обрабатывает персональные данные пользователей при соблюдении следующих условий:
+      </p>
+      <ul class="space-y-3 text-gray-700">
+        <li class="flex gap-3">
+          <span class="shrink-0 w-2 h-2 rounded-full bg-gray-400 self-start mt-2"></span>
+          <span>
+            Технические данные (IP-адрес, данные браузера) обрабатываются автоматически в целях
+            обеспечения работоспособности Сайта без отдельного согласия пользователя.
+          </span>
+        </li>
+        <li class="flex gap-3">
+          <span class="shrink-0 w-2 h-2 rounded-full bg-gray-400 self-start mt-2"></span>
+          <span>
+            Аналитическая обработка с использованием cookie Яндекс.Метрики осуществляется на
+            основании согласия пользователя, выражаемого при продолжении использования Сайта.
+          </span>
+        </li>
+        <li class="flex gap-3">
+          <span class="shrink-0 w-2 h-2 rounded-full bg-gray-400 self-start mt-2"></span>
+          <span>
+            Персональные данные из форм обратной связи обрабатываются исключительно в целях
+            ответа на обращение и не используются в маркетинговых целях без дополнительного
+            согласия пользователя.
+          </span>
+        </li>
+        <li class="flex gap-3">
+          <span class="shrink-0 w-2 h-2 rounded-full bg-gray-400 self-start mt-2"></span>
+          <span>
+            Оператор не осуществляет автоматизированную обработку персональных данных, влекущую
+            юридически значимые последствия для пользователя.
+          </span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- 8. Защита персональных данных -->
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold text-gray-900 mb-4">8. Защита персональных данных</h2>
+      <p class="text-gray-700 leading-relaxed mb-3">
+        Оператор принимает необходимые организационные и технические меры для защиты персональных
+        данных от неправомерного или случайного доступа, уничтожения, изменения, блокирования,
+        копирования, предоставления, распространения, а также от иных неправомерных действий.
+      </p>
+      <ul class="space-y-3 text-gray-700">
+        <li class="flex gap-3">
+          <span class="shrink-0 w-2 h-2 rounded-full bg-gray-400 self-start mt-2"></span>
+          <span>
+            <strong>Шифрование трафика:</strong> Сайт использует протокол HTTPS (SSL/TLS),
+            обеспечивающий защищённую передачу данных между браузером пользователя и сервером.
+          </span>
+        </li>
+        <li class="flex gap-3">
+          <span class="shrink-0 w-2 h-2 rounded-full bg-gray-400 self-start mt-2"></span>
+          <span>
+            <strong>Ограничение доступа:</strong> доступ к персональным данным имеет ограниченный
+            круг лиц, которым он необходим для выполнения их служебных обязанностей.
+          </span>
+        </li>
+        <li class="flex gap-3">
+          <span class="shrink-0 w-2 h-2 rounded-full bg-gray-400 self-start mt-2"></span>
+          <span>
+            <strong>Регулярные проверки:</strong> Оператор периодически проверяет эффективность
+            применяемых мер защиты и актуализирует их при необходимости.
+          </span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- 9. Права пользователя -->
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold text-gray-900 mb-4">9. Права пользователя</h2>
+      <p class="text-gray-700 leading-relaxed mb-4">
+        В соответствии с действующим законодательством пользователь имеет право:
+      </p>
+      <ul class="space-y-3 text-gray-700">
+        <li class="flex gap-3">
+          <span class="shrink-0 w-2 h-2 rounded-full bg-gray-400 self-start mt-2"></span>
+          <span>
+            <strong>Получить доступ</strong> к своим персональным данным, обрабатываемым Оператором.
+          </span>
+        </li>
+        <li class="flex gap-3">
+          <span class="shrink-0 w-2 h-2 rounded-full bg-gray-400 self-start mt-2"></span>
+          <span>
+            <strong>Уточнить</strong> свои персональные данные, если они являются неполными,
+            устаревшими или неточными.
+          </span>
+        </li>
+        <li class="flex gap-3">
+          <span class="shrink-0 w-2 h-2 rounded-full bg-gray-400 self-start mt-2"></span>
+          <span>
+            <strong>Заблокировать</strong> обработку своих персональных данных в случаях,
+            предусмотренных законодательством.
+          </span>
+        </li>
+        <li class="flex gap-3">
+          <span class="shrink-0 w-2 h-2 rounded-full bg-gray-400 self-start mt-2"></span>
+          <span>
+            <strong>Требовать удаления</strong> своих персональных данных, если основания для их
+            обработки отпали или отсутствовали изначально.
+          </span>
+        </li>
+        <li class="flex gap-3">
+          <span class="shrink-0 w-2 h-2 rounded-full bg-gray-400 self-start mt-2"></span>
+          <span>
+            <strong>Отозвать согласие</strong> на обработку персональных данных в любой момент.
+          </span>
+        </li>
+        <li class="flex gap-3">
+          <span class="shrink-0 w-2 h-2 rounded-full bg-gray-400 self-start mt-2"></span>
+          <span>
+            <strong>Обратиться с жалобой</strong> в уполномоченный орган по защите прав субъектов
+            персональных данных — Федеральную службу по надзору в сфере связи, информационных
+            технологий и массовых коммуникаций (Роскомнадзор).
+          </span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- 10. Отзыв согласия -->
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold text-gray-900 mb-4">10. Порядок отзыва согласия</h2>
+      <p class="text-gray-700 leading-relaxed mb-3">
+        Пользователь вправе в любой момент отозвать своё согласие на обработку персональных данных.
+        Для этого необходимо направить соответствующее обращение Оператору через Telegram:
+      </p>
+      <div class="bg-gray-50 rounded-xl p-5">
+        <a
+          href="https://t.me/subonair"
+          class="inline-flex items-center gap-2 text-gray-900 font-medium hover:underline"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path
+              d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"
+            ></path>
+          </svg>
+          @subonair в Telegram
+        </a>
+      </div>
+      <p class="text-gray-700 leading-relaxed mt-3">
+        Оператор рассматривает обращение и прекращает обработку персональных данных в течение
+        30 (тридцати) дней с момента получения отзыва согласия, если иное не предусмотрено
+        законодательством.
+      </p>
+      <p class="text-gray-700 leading-relaxed mt-2">
+        Отзыв согласия не влияет на правомерность обработки, осуществлявшейся до его отзыва.
+      </p>
+    </section>
+
+    <!-- 11. Трансграничная передача -->
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold text-gray-900 mb-4">11. Трансграничная передача персональных данных</h2>
+      <p class="text-gray-700 leading-relaxed">
+        Трансграничная передача персональных данных (передача на территорию иностранных государств)
+        Оператором <strong>не осуществляется</strong>. Все данные обрабатываются и хранятся на
+        серверах, расположенных на территории Российской Федерации.
+      </p>
+    </section>
+
+    <!-- 12. Сроки хранения -->
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold text-gray-900 mb-4">12. Сроки хранения персональных данных</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm text-gray-700 border-collapse">
+          <thead>
+            <tr class="bg-gray-50 border-b border-gray-200">
+              <th class="text-left py-3 px-4 font-semibold text-gray-900">Категория данных</th>
+              <th class="text-left py-3 px-4 font-semibold text-gray-900">Срок хранения</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-gray-100">
+              <td class="py-3 px-4">Файлы cookie аналитики (Яндекс.Метрика)</td>
+              <td class="py-3 px-4">До 1 года с момента установки</td>
+            </tr>
+            <tr class="border-b border-gray-100 bg-gray-50">
+              <td class="py-3 px-4">Технические данные (IP-адрес, логи сервера)</td>
+              <td class="py-3 px-4">До 1 года</td>
+            </tr>
+            <tr class="border-b border-gray-100">
+              <td class="py-3 px-4">Данные форм обратной связи (имя, email, телефон)</td>
+              <td class="py-3 px-4">До 3 лет с момента получения</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-gray-700 leading-relaxed mt-4">
+        По истечении указанных сроков персональные данные уничтожаются или обезличиваются, если
+        иное не предусмотрено законодательством Российской Федерации.
+      </p>
+    </section>
+
+    <!-- 13. Заключительные положения -->
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold text-gray-900 mb-4">13. Заключительные положения</h2>
+      <p class="text-gray-700 leading-relaxed mb-3">
+        Оператор вправе вносить изменения в настоящую Политику без специального уведомления
+        пользователей. Новая редакция Политики вступает в силу с момента её размещения на Сайте.
+        Пользователю рекомендуется периодически проверять актуальность Политики.
+      </p>
+      <p class="text-gray-700 leading-relaxed mb-3">
+        Настоящая Политика регулируется и толкуется в соответствии с законодательством Российской
+        Федерации. Все споры, возникающие в связи с применением Политики, подлежат рассмотрению
+        в соответствии с действующим законодательством РФ.
+      </p>
+      <p class="text-gray-700 leading-relaxed">
+        По всем вопросам, связанным с обработкой персональных данных, пользователь может
+        обратиться к Оператору через Telegram:{' '}
+        <a href="https://t.me/subonair" class="text-accent hover:underline font-medium">@subonair</a>.
+      </p>
+    </section>
+
+    <div class="border-t border-gray-100 pt-6 text-sm text-gray-400">
+      Редакция: 05 апреля 2026 г. | Федеральный закон от 27.07.2006 № 152-ФЗ «О персональных данных»
+    </div>
+  </main>
+
+  <Footer />
+</Base>
