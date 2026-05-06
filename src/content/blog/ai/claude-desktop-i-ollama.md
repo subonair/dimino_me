@@ -1,13 +1,13 @@
 ---
-title: Claude Desktop теперь работает с Ollama Cloud
+title: 'Claude Desktop и Ollama Cloud'
 description:
-  Ollama 0.23 встроилась в Claude Desktop — open-source модели через Claude Code без подписки Anthropic. Тест публикации
-  через гермес-скилл.
+  'Ollama 0.23 встроилась в Claude Desktop — open-source модели через Claude Code без подписки Anthropic. Как настроить
+  и что это значит для разработчиков.'
 date: 2026-05-05
 category: ai
 ---
 
-# Claude Desktop теперь работает с Ollama Cloud
+# Claude Desktop и Ollama Cloud
 
 Ollama 0.23 научилась встраиваться в Claude Desktop как провайдер моделей. Одна команда, и в селекторе моделей
 появляются qwen, gemma, kimi, ministral — прямиком из Ollama Cloud.
