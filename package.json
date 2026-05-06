@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "lint": "eslint src/",
     "preview": "astro preview",
     "astro": "astro",
     "sync": "./sync-obsidian.sh"
