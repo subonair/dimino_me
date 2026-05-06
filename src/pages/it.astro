@@ -9,12 +9,32 @@ import TelegramCTA from '../components/TelegramCTA.astro';
 const posts = (await getCollection('blog', ({ data }) => data.category === 'it')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
 );
+
+const pageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'IT — технологии и разработка',
+  description:
+    'IT-раздел: технологии, разработка продуктов, управление командой и карьера. Пишу о том, что реально работает.',
+  url: 'https://dimino.me/it/',
+  isPartOf: {
+    '@type': 'WebSite',
+    name: 'Дмитрий Иноземцев',
+    url: 'https://dimino.me',
+  },
+  author: {
+    '@type': 'Person',
+    name: 'Дмитрий Иноземцев',
+    url: 'https://dimino.me/about/',
+  },
+};
 ---
 
 <Base
   title="IT — технологии и разработка"
   description="IT-раздел: технологии, разработка продуктов, управление командой и карьера. Пишу о том, что реально работает — из опыта в продуктовой разработке."
 >
+  <script type="application/ld+json" set:html={JSON.stringify(pageSchema)} />
   <Header />
 
   <main class="max-w-3xl mx-auto px-4 py-10">

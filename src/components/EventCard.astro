@@ -47,7 +47,9 @@ if (distances.run != null) distanceParts.push(`🏃 ${distances.run} км`);
 const externalUrl = sourceUrl || 'https://iron-star.com/event/';
 ---
 
-<article class="group relative bg-white border border-gray-100 rounded-xl p-5 hover:border-gray-200 hover:shadow-sm transition-all">
+<article
+  class="group relative bg-white border border-gray-100 rounded-xl p-5 hover:border-gray-200 hover:shadow-sm transition-all"
+>
   <!-- Status badge — top right -->
   <span
     class={`absolute top-3 right-3 shrink-0 px-2 py-0.5 rounded-full text-xs font-medium ${statusConfig[status]?.color || 'bg-gray-100 text-gray-600'}`}
@@ -56,7 +58,9 @@ const externalUrl = sourceUrl || 'https://iron-star.com/event/';
   </span>
 
   <!-- Title -->
-  <h2 class="text-base font-semibold text-gray-900 group-hover:text-gray-600 transition-colors pr-20">
+  <h2
+    class="text-base font-semibold text-gray-900 group-hover:text-gray-600 transition-colors pr-20"
+  >
     {title}
   </h2>
 

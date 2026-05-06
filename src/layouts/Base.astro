@@ -24,7 +24,11 @@ const {
 
 const isNoindex = robots.includes('noindex');
 
-const resolvedOgImage = ogImage ?? (slug ? `/api/og/${slug}.png` : '/api/og/default.png');
+const siteOrigin = Astro.site?.origin ?? 'https://dimino.me';
+const relativeOgImage = ogImage ?? (slug ? `/api/og/${slug}.png` : '/api/og/default.png');
+const resolvedOgImage = relativeOgImage.startsWith('http')
+  ? relativeOgImage
+  : `${siteOrigin}${relativeOgImage}`;
 
 const siteTitle = title.includes('Дмитрий Иноземцев') ? title : `${title} — Дмитрий Иноземцев`;
 ---
@@ -49,6 +53,9 @@ const siteTitle = title.includes('Дмитрий Иноземцев') ? title : 
     <meta property="og:title" content={siteTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={resolvedOgImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={siteTitle} />
     <meta property="og:locale" content="ru_RU" />
     <meta property="og:site_name" content="Дмитрий Иноземцев" />
 

@@ -17,6 +17,7 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content } = await render(post);
 const slug = `${post.data.category}/${post.id.split('/').pop()}`;
+const heroImage = post.data.image;
 ---
 
 <PostLayout
@@ -24,15 +25,29 @@ const slug = `${post.data.category}/${post.id.split('/').pop()}`;
   description={post.data.description}
   datePublished={post.data.date.toISOString()}
   slug={slug}
+  image={heroImage}
 >
-  <img
-    src={`/api/og/${slug}.png`}
-    alt={post.data.title}
-    width="1200"
-    height="630"
-    class="w-full rounded-xl mb-8 shadow-lg"
-    loading="eager"
-  />
+  {
+    heroImage ? (
+      <img
+        src={heroImage}
+        alt={post.data.title}
+        width="1200"
+        height="630"
+        class="w-full rounded-xl mb-8 shadow-lg object-cover"
+        loading="eager"
+      />
+    ) : (
+      <img
+        src={`/api/og/${slug}.png`}
+        alt={post.data.title}
+        width="1200"
+        height="630"
+        class="w-full rounded-xl mb-8 shadow-lg"
+        loading="eager"
+      />
+    )
+  }
   <div class="flex items-start justify-between gap-4 mb-6">
     <h1 class="text-3xl font-bold text-gray-900 leading-tight">{post.data.title}</h1>
     <time

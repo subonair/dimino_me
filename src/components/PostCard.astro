@@ -10,9 +10,7 @@ interface Props {
 
 const { title, description, date, image, slug, href } = Astro.props;
 
-const resolvedImage = image && !image.includes('placeholder')
-  ? image
-  : `/api/og/${slug}.png`;
+const resolvedImage = image && !image.includes('placeholder') ? image : `/api/og/${slug}.png`;
 
 const formattedDate = new Date(date).toLocaleDateString('ru-RU', {
   year: 'numeric',

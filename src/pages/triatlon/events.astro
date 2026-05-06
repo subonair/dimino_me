@@ -12,12 +12,27 @@ const events = (await getCollection('events')).sort(
 const now = new Date();
 const upcoming = events.filter((e) => e.data.date >= now);
 const past = events.filter((e) => e.data.date < now);
+
+const pageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Календарь стартов IronStar',
+  description:
+    'Календарь триатлонных стартов IronStar: даты соревнований, дистанции, стоимость участия и регистрация. Ближайшие и прошедшие события — всё в одном месте.',
+  url: 'https://dimino.me/triatlon/events/',
+  isPartOf: {
+    '@type': 'WebSite',
+    name: 'Дмитрий Иноземцев',
+    url: 'https://dimino.me',
+  },
+};
 ---
 
 <Base
   title="Календарь стартов IronStar"
   description="Календарь триатлонных стартов IronStar: даты соревнований, дистанции, стоимость участия и регистрация. Ближайшие и прошедшие события — всё в одном месте."
 >
+  <script type="application/ld+json" set:html={JSON.stringify(pageSchema)} />
   <Header />
 
   <main class="max-w-3xl mx-auto px-4 py-10">

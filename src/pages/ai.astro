@@ -9,12 +9,33 @@ import TelegramCTA from '../components/TelegramCTA.astro';
 const posts = (await getCollection('blog', ({ data }) => data.category === 'ai')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
 );
+
+const pageUrl = 'https://dimino.me/ai/';
+const pageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'ИИ — эксперименты и инструменты',
+  description:
+    'Искусственный интеллект: практические эксперименты с нейросетями, обзоры ИИ-инструментов и честные выводы без хайпа.',
+  url: pageUrl,
+  isPartOf: {
+    '@type': 'WebSite',
+    name: 'Дмитрий Иноземцев',
+    url: 'https://dimino.me',
+  },
+  author: {
+    '@type': 'Person',
+    name: 'Дмитрий Иноземцев',
+    url: 'https://dimino.me/about/',
+  },
+};
 ---
 
 <Base
   title="ИИ — эксперименты и инструменты"
   description="Искусственный интеллект: практические эксперименты с нейросетями, обзоры ИИ-инструментов и честные выводы без хайпа. Проверяю на себе и делюсь результатами."
 >
+  <script type="application/ld+json" set:html={JSON.stringify(pageSchema)} />
   <Header />
 
   <main class="max-w-3xl mx-auto px-4 py-10">

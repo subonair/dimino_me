@@ -10,6 +10,7 @@ interface Props {
   datePublished: string;
   canonicalURL?: string;
   slug?: string;
+  image?: string;
 }
 
 const {
@@ -19,9 +20,19 @@ const {
   datePublished,
   canonicalURL = Astro.url.toString().replace(/\/?$/, '/'),
   slug,
+  image,
 } = Astro.props;
 
-const resolvedOgImage = ogImage ?? (slug ? `/api/og/${slug}.png` : '/api/og/default.png');
+const siteOrigin = Astro.site?.origin ?? 'https://dimino.me';
+
+// Prefer frontmatter image for OG, then explicit ogImage, then Satori fallback
+const _relativeOgImage =
+  ogImage ??
+  (image ? (image.startsWith('http') ? image : `${siteOrigin}${image}`) : undefined) ??
+  (slug ? `/api/og/${slug}.png` : '/api/og/default.png');
+const resolvedOgImage = _relativeOgImage.startsWith('http')
+  ? _relativeOgImage
+  : `${siteOrigin}${_relativeOgImage}`;
 
 const articleSchema = {
   '@context': 'https://schema.org',

@@ -17,12 +17,32 @@ const events = (await getCollection('events')).sort(
 
 const now = new Date();
 const upcoming = events.filter((e) => e.data.date >= now);
+
+const pageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Триатлон — тренировки и гонки',
+  description:
+    'Раздел о триатлоне: тренировки, гонки, снаряжение и всё, что помогает финишировать. Плавание, велосипед, бег — личный опыт и практические советы триатлета.',
+  url: 'https://dimino.me/triatlon/',
+  isPartOf: {
+    '@type': 'WebSite',
+    name: 'Дмитрий Иноземцев',
+    url: 'https://dimino.me',
+  },
+  author: {
+    '@type': 'Person',
+    name: 'Дмитрий Иноземцев',
+    url: 'https://dimino.me/about/',
+  },
+};
 ---
 
 <Base
   title="Триатлон — тренировки и гонки"
   description="Раздел о триатлоне: тренировки, гонки, снаряжение и всё, что помогает финишировать. Плавание, велосипед, бег — личный опыт и практические советы триатлета."
 >
+  <script type="application/ld+json" set:html={JSON.stringify(pageSchema)} />
   <Header />
 
   <main class="max-w-3xl mx-auto px-4 py-10">
