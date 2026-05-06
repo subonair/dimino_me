@@ -1,20 +1,17 @@
 ---
-title: "SWIMSTAR 2K RELAY"
+title: 'SWIMSTAR 2K RELAY'
 date: 2026-06-06
-city: "Минск"
+city: 'Минск'
 sportType: swim
 status: low
 distances:
-    swim: 1.0
+  swim: 2.0
 ---
 
-**Дата:** 06.06.2026  
-**Город:** Минск  
-**Тип:** aquathlon  
-**Статус слотов:** low
+# SWIMSTAR 2K RELAY
+
+**Дата:** 2026-06-06 **Город:** Минск **Тип:** swim **Статус слотов:** low
 
 ## Дистанции
 
-- 🏊 Плавание: 1.0 км
-
-[Регистрация на iron-star.com](https://iron-star.com/event/)
+- 🏊 Плавание: 2.0 км

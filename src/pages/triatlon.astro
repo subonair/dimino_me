@@ -38,7 +38,7 @@ const upcoming = events.filter((e) => e.data.date >= now);
           </p>
 
           <div class="mt-4 space-y-2">
-            {upcoming.map((event) => (
+            {upcoming.slice(0, 10).map((event) => (
               <EventCard
                 title={event.data.title}
                 slug={event.id.replace(/\.md$/, '')}
