@@ -24,13 +24,16 @@ function detectSportType(title, dists) {
 
   if (dists.length === 1) {
     if (/SWIM|ПЛАВ/.test(nameUp)) return { type: 'swim', dists: { swim: dists[0] } };
-    if (/RUN|БЕГ|IRONLADY|MANSTAR|STARKIDS|5K/.test(nameUp)) return { type: 'run', dists: { run: dists[0] } };
+    if (/RUN|БЕГ|IRONLADY|MANSTAR|STARKIDS|5K/.test(nameUp))
+      return { type: 'run', dists: { run: dists[0] } };
     return { type: 'run', dists: { run: dists[0] } };
   }
 
   if (dists.length === 2) {
-    if (/SWIMRUN|СВИМРАН/.test(nameUp)) return { type: 'swimrun', dists: { swim: dists[0], run: dists[1] } };
-    if (/AQUATHLON|АКВАТЛОН/.test(nameUp)) return { type: 'aquathlon', dists: { swim: dists[0], run: dists[1] } };
+    if (/SWIMRUN|СВИМРАН/.test(nameUp))
+      return { type: 'swimrun', dists: { swim: dists[0], run: dists[1] } };
+    if (/AQUATHLON|АКВАТЛОН/.test(nameUp))
+      return { type: 'aquathlon', dists: { swim: dists[0], run: dists[1] } };
     // Детские старты, relay — swim/run
     if (/RELAY/.test(nameUp)) return { type: 'swim', dists: { swim: dists[0] } };
     return { type: 'aquathlon', dists: { swim: dists[0], run: dists[1] } };
@@ -83,10 +86,12 @@ function generateMd(event) {
 
   const frontmatterDists = distKeys.map(([k, v]) => `    ${k}: ${v}`).join('\n');
 
-  const bodyLines = distKeys.map(([k, v]) => {
-    const labels = { swim: '🏊 Плавание', bike: '🚴 Вело', run: '🏃 Бег' };
-    return `- ${labels[k] || k}: ${v} км`;
-  }).join('\n');
+  const bodyLines = distKeys
+    .map(([k, v]) => {
+      const labels = { swim: '🏊 Плавание', bike: '🚴 Вело', run: '🏃 Бег' };
+      return `- ${labels[k] || k}: ${v} км`;
+    })
+    .join('\n');
 
   return `---
 title: "${title}"
@@ -130,7 +135,7 @@ async function main() {
     for (let i = 0; i < 20; i++) {
       await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
       await page.waitForTimeout(500);
-      const count = await page.$$eval('.event-item-wrap', els => els.length);
+      const count = await page.$$eval('.event-item-wrap', (els) => els.length);
       if (count === prevCount && count > 0) break;
       prevCount = count;
     }
@@ -187,7 +192,14 @@ async function main() {
 
       const status = detectStatus(statusText);
       const slug = slugify(title, dateStr);
-      const md = generateMd({ title, dateStr, city, sportType: sport.type, status, distances: sport.dists });
+      const md = generateMd({
+        title,
+        dateStr,
+        city,
+        sportType: sport.type,
+        status,
+        distances: sport.dists,
+      });
 
       const filepath = join(EVENTS_DIR, `${slug}.md`);
       await writeFile(filepath, md, 'utf-8');
