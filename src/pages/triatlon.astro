@@ -4,10 +4,19 @@ import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import PostCard from '../components/PostCard.astro';
+import EventCard from '../components/EventCard.astro';
 import TelegramCTA from '../components/TelegramCTA.astro';
 
-const posts = (await getCollection('blog', ({ data }) => data.category === 'triatlon'))
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const posts = (await getCollection('blog', ({ data }) => data.category === 'triatlon')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+
+const events = (await getCollection('events')).sort(
+  (a, b) => a.data.date.valueOf() - b.data.date.valueOf(),
+);
+
+const now = new Date();
+const upcoming = events.filter((e) => e.data.date >= now);
 ---
 
 <Base title="Триатлон" description="Тренировки, гонки и снаряжение для триатлета">
@@ -15,31 +24,66 @@ const posts = (await getCollection('blog', ({ data }) => data.category === 'tria
 
   <main class="max-w-3xl mx-auto px-4 py-10">
     <h1 class="text-3xl font-bold text-gray-900">Триатлон</h1>
-    <p class="mt-3 text-gray-500">Тренировки, гонки, снаряжение и всё, что помогает финишировать.</p>
+    <p class="mt-3 text-gray-500">
+      Тренировки, гонки, снаряжение и всё, что помогает финишировать.
+    </p>
 
-    <div class="mt-10">
-      {
-        posts.length > 0 ? (
-          <div class="grid gap-4 sm:grid-cols-2">
-            {posts.map((post) => (
-              <PostCard
-                title={post.data.title}
-                description={post.data.description}
-                date={post.data.date.toISOString().split('T')[0]}
-                image={post.data.image}
-                href={`/${post.id.replace(/\.md$/, '')}/`}
+    <!-- Ближайшие старты -->
+    {
+      upcoming.length > 0 && (
+        <section class="mt-12">
+          <h2 class="text-xl font-semibold text-gray-800">Ближайшие старты ({upcoming.length})</h2>
+          <p class="mt-1 text-sm text-gray-400">
+            Календарь IRONSTAR — парсится с iron-star.com/event/
+          </p>
+
+          <div class="mt-4 space-y-2">
+            {upcoming.map((event) => (
+              <EventCard
+                title={event.data.title}
+                slug={event.id.replace(/\.md$/, '')}
+                date={event.data.date}
+                city={event.data.city}
+                sportType={event.data.sportType}
+                status={event.data.status}
+                distances={event.data.distances}
               />
             ))}
           </div>
-        ) : (
-          <div class="py-16 text-center border border-dashed border-gray-200 rounded-2xl">
-            <p class="text-gray-400 text-sm">Посты скоро появятся</p>
-          </div>
-        )
-      }
-    </div>
+        </section>
+      )
+    }
 
-    <TelegramCTA message="Готовлюсь к следующей гонке — подписывайся, пишу о тренировочном процессе." />
+    <!-- Посты -->
+    <section class="mt-12">
+      <h2 class="text-xl font-semibold text-gray-800">Заметки о триатлоне</h2>
+
+      <div class="mt-4">
+        {
+          posts.length > 0 ? (
+            <div class="grid gap-4 sm:grid-cols-2">
+              {posts.map((post) => (
+                <PostCard
+                  title={post.data.title}
+                  description={post.data.description}
+                  date={post.data.date.toISOString().split('T')[0]}
+                  image={post.data.image}
+                  href={`/${post.id.replace(/\.md$/, '')}/`}
+                />
+              ))}
+            </div>
+          ) : (
+            <div class="py-16 text-center border border-dashed border-gray-200 rounded-2xl">
+              <p class="text-gray-400 text-sm">Посты скоро появятся</p>
+            </div>
+          )
+        }
+      </div>
+    </section>
+
+    <TelegramCTA
+      message="Готовлюсь к следующей гонке — подписывайся, пишу о тренировочном процессе."
+    />
   </main>
 
   <Footer />

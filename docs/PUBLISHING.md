@@ -1,21 +1,21 @@
 # Публикация постов на dimino.me
 
-**Для:** Внешние боты, агенты
-**Обновлено:** 2026-05-05
+**Для:** Внешние боты, агенты **Обновлено:** 2026-05-05
 
 ---
 
 ## Документация
 
-| Расположение | Ссылка |
-|--------------|-------|
-| Nextcloud | `Common/flex-agents/global/proj/blogger/dimino_me/PUBLISHING.md` |
-| GitHub | https://github.com/subonair/dimino_me/blob/main/docs/PUBLISHING.md |
-| Локально | `/root/projects/dimino-blog/docs/PUBLISHING.md` |
+| Расположение | Ссылка                                                             |
+| ------------ | ------------------------------------------------------------------ |
+| Nextcloud    | `Common/flex-agents/global/proj/blogger/dimino_me/PUBLISHING.md`   |
+| GitHub       | <https://github.com/subonair/dimino_me/blob/main/docs/PUBLISHING.md> |
+| Локально     | `/root/projects/dimino-blog/docs/PUBLISHING.md`                    |
 
 ---
 
 ## URL сайта
+
 ```
 https://dimino.me
 ```
@@ -25,10 +25,12 @@ https://dimino.me
 ## Структура контента
 
 ### Репозиторий
-- **GitHub:** https://github.com/subonair/dimino_me
+
+- **GitHub:** <https://github.com/subonair/dimino_me>
 - **Локально:** `/root/projects/dimino-blog/`
 
 ### Коллекция
+
 ```
 src/content/blog/{category}/{slug}.md
 ```
@@ -36,6 +38,7 @@ src/content/blog/{category}/{slug}.md
 **Название коллекции:** `blog`
 
 **Категории:**
+
 - `ai` — ИИ и технологии
 - `it` — IT и карьера
 - `triatlon` — Триатлон и спорт
@@ -55,13 +58,13 @@ image: /images/post-cover.webp
 ---
 ```
 
-| Поле | Тип | Обязательное | Описание |
-|------|-----|---------------|----------|
-| `title` | string | ✅ | Заголовок поста |
-| `description` | string | ✅ | SEO description (160 символов) |
-| `date` | date | ✅ | Дата публикации (YYYY-MM-DD) |
-| `category` | enum | ✅ | `ai`, `it`, `triatlon`, `services` |
-| `image` | string | ❌ | Обложка поста. Дефолт: `/images/placeholder.jpg` |
+| Поле          | Тип    | Обязательное | Описание                                         |
+| ------------- | ------ | ------------ | ------------------------------------------------ |
+| `title`       | string | ✅           | Заголовок поста                                  |
+| `description` | string | ✅           | SEO description (160 символов)                   |
+| `date`        | date   | ✅           | Дата публикации (YYYY-MM-DD)                     |
+| `category`    | enum   | ✅           | `ai`, `it`, `triatlon`, `services`               |
+| `image`       | string | ❌           | Обложка поста. Дефолт: `/images/placeholder.jpg` |
 
 ---
 
@@ -79,6 +82,7 @@ image: /images/post-cover.webp
 
 1. Создать файл в `/root/projects/dimino-blog/src/content/blog/{category}/{slug}.md`
 2. Выполнить деплой:
+
 ```bash
 cd /root/projects/dimino-blog
 npm run build
@@ -86,8 +90,8 @@ bash deploy.sh
 ```
 
 ### Автодеплой
-Git push в main → автоматический деплой не настроен.
-Нужен ручной запуск `deploy.sh` на сервере.
+
+Git push в main → автоматический деплой не настроен. Нужен ручной запуск `deploy.sh` на сервере.
 
 ---
 
@@ -121,14 +125,18 @@ image: /images/ai-webdev.webp
 ## Изображения
 
 ### Расположение
+
 - Статические: `public/images/`
 - В постах: относительные пути `/images/filename.webp`
 
 ### Форматы
+
 WebP (предпочтительно), PNG, JPG
 
 ### Внешние источники
+
 Unsplash разрешён в CSP:
+
 ```markdown
 ![Alt](https://images.unsplash.com/photo-ID?auto=format&fit=crop&w=1200)
 ```
@@ -147,6 +155,7 @@ Unsplash разрешён в CSP:
 ## Проверка
 
 После публикации проверить:
+
 1. `/blog/{category}/{slug}/` — страница поста
 2. `/api/og/{category}/{slug}.png` — OG-картинка
 3. `/sitemap.xml` — наличие в карте

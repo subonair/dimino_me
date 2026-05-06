@@ -8,7 +8,7 @@ let fontCache: ArrayBuffer | null = null;
 async function getFont(): Promise<ArrayBuffer> {
   if (!fontCache) {
     fontCache = await fetch(
-      'https://cdn.jsdelivr.net/fontsource/fonts/inter@latest/latin-400-normal.ttf'
+      'https://cdn.jsdelivr.net/fontsource/fonts/inter@latest/latin-400-normal.ttf',
     ).then((r) => r.arrayBuffer());
   }
   return fontCache;
@@ -109,7 +109,7 @@ export const GET: APIRoute = async ({ props }) => {
           style: 'normal',
         },
       ],
-    }
+    },
   );
 
   const resvg = new Resvg(svg, { fitTo: { mode: 'width', value: 1200 } });

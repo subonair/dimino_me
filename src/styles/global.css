@@ -1,7 +1,7 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @theme {
-  --color-accent: #1D3E81;
+  --color-accent: #1d3e81;
   --color-accent-dark: #162f61;
 }
 

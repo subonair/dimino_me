@@ -6,8 +6,9 @@ import Footer from '../components/Footer.astro';
 import PostCard from '../components/PostCard.astro';
 import TelegramCTA from '../components/TelegramCTA.astro';
 
-const posts = (await getCollection('blog', ({ data }) => data.category === 'it'))
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const posts = (await getCollection('blog', ({ data }) => data.category === 'it')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
 ---
 
 <Base title="IT" description="Технологии, разработка, продукт и карьера в IT">

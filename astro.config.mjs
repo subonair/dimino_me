@@ -9,6 +9,6 @@ export default defineConfig({
   site: 'https://dimino.me',
   integrations: [sitemap()],
   vite: {
-    plugins: [tailwindcss()]
-  }
+    plugins: [tailwindcss()],
+  },
 });

@@ -6,8 +6,9 @@ import Footer from '../components/Footer.astro';
 import PostCard from '../components/PostCard.astro';
 import TelegramCTA from '../components/TelegramCTA.astro';
 
-const posts = (await getCollection('blog', ({ data }) => data.category === 'ai'))
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const posts = (await getCollection('blog', ({ data }) => data.category === 'ai')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
 ---
 
 <Base title="ИИ" description="Эксперименты и выводы про искусственный интеллект">
@@ -15,7 +16,9 @@ const posts = (await getCollection('blog', ({ data }) => data.category === 'ai')
 
   <main class="max-w-3xl mx-auto px-4 py-10">
     <h1 class="text-3xl font-bold text-gray-900">ИИ</h1>
-    <p class="mt-3 text-gray-500">Эксперименты, инструменты и честные выводы про искусственный интеллект.</p>
+    <p class="mt-3 text-gray-500">
+      Эксперименты, инструменты и честные выводы про искусственный интеллект.
+    </p>
 
     <div class="mt-10">
       {

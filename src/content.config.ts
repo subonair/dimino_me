@@ -12,4 +12,20 @@ const blog = defineCollection({
   }),
 });
 
-export const collections = { blog };
+const events = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/events' }),
+  schema: z.object({
+    title: z.string(),
+    date: z.date(),
+    city: z.string(),
+    sportType: z.enum(['triathlon', 'swimrun', 'aquathlon', 'swim', 'run']),
+    status: z.enum(['open', 'low', 'sold_out', 'waitlist']),
+    distances: z.object({
+      swim: z.number().optional(),
+      bike: z.number().optional(),
+      run: z.number().optional(),
+    }),
+  }),
+});
+
+export const collections = { blog, events };

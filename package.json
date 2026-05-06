@@ -20,5 +20,11 @@
     "astro": "^6.1.2",
     "satori": "^0.26.0",
     "tailwindcss": "^4.2.2"
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-astro": "^1.7.0",
+    "prettier-plugin-astro": "^0.14.1",
+    "typescript-eslint": "^8.59.2"
   }
 }

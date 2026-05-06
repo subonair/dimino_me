@@ -39,7 +39,13 @@ const slug = `${post.data.category}/${post.id.split('/').pop()}`;
       datetime={post.data.date.toISOString()}
       class="text-sm text-gray-400 whitespace-nowrap shrink-0 pt-1"
     >
-      {post.data.date.toLocaleDateString('ru-RU', { year: 'numeric', month: 'long', day: 'numeric' })}
+      {
+        post.data.date.toLocaleDateString('ru-RU', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        })
+      }
     </time>
   </div>
   <article class="prose prose-gray max-w-none">

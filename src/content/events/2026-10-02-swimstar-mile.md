@@ -1,0 +1,20 @@
+---
+title: "SWIMSTAR MILE"
+date: 2026-10-02
+city: "Сириус (Сочи)"
+sportType: swim
+status: open
+distances:
+    swim: 1.85
+---
+
+**Дата:** 02.10.2026  
+**Город:** Сириус (Сочи)  
+**Тип:** swim  
+**Статус слотов:** open
+
+## Дистанции
+
+- 🏊 Плавание: 1.85 км
+
+[Регистрация на iron-star.com](https://iron-star.com/event/)

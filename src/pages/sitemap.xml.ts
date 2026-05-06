@@ -31,7 +31,7 @@ export const GET: APIRoute = async () => {
   const urlElements = allPages
     .map(
       (page) =>
-        `  <url>\n    <loc>${SITE}${page.url}</loc>\n    <lastmod>${page.lastmod}</lastmod>\n    <changefreq>${page.changefreq}</changefreq>\n    <priority>${page.priority}</priority>\n  </url>`
+        `  <url>\n    <loc>${SITE}${page.url}</loc>\n    <lastmod>${page.lastmod}</lastmod>\n    <changefreq>${page.changefreq}</changefreq>\n    <priority>${page.priority}</priority>\n  </url>`,
     )
     .join('\n');
 

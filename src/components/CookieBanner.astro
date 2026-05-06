@@ -4,22 +4,37 @@ const METRIKA_ID = 108376892;
 ---
 
 <!-- Cookie Banner -->
-<div id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Согласие на cookie" aria-live="polite">
+<div
+  id="cookie-banner"
+  class="cookie-banner"
+  role="dialog"
+  aria-label="Согласие на cookie"
+  aria-live="polite"
+>
   <div class="cookie-banner__inner">
     <p class="cookie-banner__text">
-      Мы используем файлы cookie для улучшения работы сайта. Нажимая «Принять», вы даёте согласие
-      на обработку персональных данных в соответствии с{' '}
+      Мы используем файлы cookie для улучшения работы сайта. Нажимая «Принять», вы даёте согласие на
+      обработку персональных данных в соответствии с{' '}
       <a href="/privacy/" class="cookie-banner__link">Политикой конфиденциальности</a>.
     </p>
     <div class="cookie-banner__actions">
-      <button id="cookie-accept" class="cookie-banner__btn cookie-banner__btn--accept">Принять</button>
-      <button id="cookie-reject" class="cookie-banner__btn cookie-banner__btn--reject">Отклонить</button>
+      <button id="cookie-accept" class="cookie-banner__btn cookie-banner__btn--accept"
+        >Принять</button
+      >
+      <button id="cookie-reject" class="cookie-banner__btn cookie-banner__btn--reject"
+        >Отклонить</button
+      >
     </div>
   </div>
 </div>
 
 <!-- Reopen button (shown after decision) -->
-<button id="cookie-reopen" class="cookie-reopen" aria-label="Настройки cookie" title="Настройки cookie">
+<button
+  id="cookie-reopen"
+  class="cookie-reopen"
+  aria-label="Настройки cookie"
+  title="Настройки cookie"
+>
   🛡️
 </button>
 
@@ -91,7 +106,7 @@ const METRIKA_ID = 108376892;
   }
 
   .cookie-banner__btn--accept {
-    background: #1D3E81;
+    background: #1d3e81;
     color: #fff;
   }
 
@@ -160,10 +175,15 @@ const METRIKA_ID = 108376892;
     if (window.__metrikaInitialized) return;
     window.__metrikaInitialized = true;
 
-    (function(m, e, t, r, i, k, a) {
-      m[i] = m[i] || function() { (m[i].a = m[i].a || []).push(arguments); };
+    (function (m, e, t, r, i, k, a) {
+      m[i] =
+        m[i] ||
+        function () {
+          // eslint-disable-next-line prefer-rest-params
+          (m[i].a = m[i].a || []).push(arguments);
+        };
       m[i].l = 1 * new Date();
-      for (var j = 0; j < document.scripts.length; j++) {
+      for (let j = 0; j < document.scripts.length; j++) {
         if (document.scripts[j].src === r) return;
       }
       k = e.createElement(t);
@@ -209,18 +229,18 @@ const METRIKA_ID = 108376892;
     showBanner();
   }
 
-  document.getElementById('cookie-accept').addEventListener('click', function() {
+  document.getElementById('cookie-accept').addEventListener('click', function () {
     localStorage.setItem(STORAGE_KEY, 'accepted');
     hideBanner();
     initMetrika();
   });
 
-  document.getElementById('cookie-reject').addEventListener('click', function() {
+  document.getElementById('cookie-reject').addEventListener('click', function () {
     localStorage.setItem(STORAGE_KEY, 'rejected');
     hideBanner();
   });
 
-  document.getElementById('cookie-reopen').addEventListener('click', function() {
+  document.getElementById('cookie-reopen').addEventListener('click', function () {
     showBanner();
     document.getElementById('cookie-reopen').classList.remove('is-visible');
   });
