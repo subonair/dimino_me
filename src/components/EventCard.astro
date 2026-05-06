@@ -13,6 +13,7 @@ interface Props {
   title: string;
   date: Date;
   city: string;
+  sportType: 'triathlon' | 'swimrun' | 'aquathlon' | 'swim' | 'run' | 'bike' | 'duathlon';
   status: 'open' | 'low' | 'sold_out' | 'waitlist';
   distances: {
     swim?: number;
@@ -23,7 +24,26 @@ interface Props {
   prices?: PriceCategory[];
 }
 
-const { title, date, city, status, distances, sourceUrl, prices } = Astro.props;
+const {
+  title,
+  date,
+  city,
+  sportType,
+  status,
+  distances,
+  sourceUrl,
+  prices,
+} = Astro.props;
+
+const sportTypeConfig: Record<string, { icon: string; label: string }> = {
+  triathlon: { icon: '🏊🚴🏃', label: 'Триатлон' },
+  swimrun: { icon: '🏊🏃', label: 'Swimrun' },
+  aquathlon: { icon: '🏊🏃', label: 'Акватлон' },
+  swim: { icon: '🏊', label: 'Плавание' },
+  run: { icon: '🏃', label: 'Бег' },
+  bike: { icon: '🚴', label: 'Велосипед' },
+  duathlon: { icon: '🚴🏃', label: 'Дуатлон' },
+};
 
 const formattedDate = date.toLocaleDateString('ru-RU', {
   year: 'numeric',
@@ -69,6 +89,12 @@ const externalUrl = sourceUrl || 'https://iron-star.com/event/';
     <time datetime={date.toISOString().split('T')[0]}>{formattedDate}</time>
     <span aria-hidden="true">·</span>
     <span>{city}</span>
+  </div>
+
+  <!-- Sport type -->
+  <div class="mt-0.5 text-xs text-gray-400 flex items-center gap-1">
+    <span>{sportTypeConfig[sportType]?.icon}</span>
+    <span>{sportTypeConfig[sportType]?.label || sportType}</span>
   </div>
 
   <!-- Distances -->
