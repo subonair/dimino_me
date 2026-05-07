@@ -9,8 +9,9 @@ export async function GET(context: APIContext) {
   );
 
   return rss({
-    title: 'itrokit — блог об ИИ, триатлоне и работе',
-    description: 'Блог Дмитрия Иноземцева об ИИ, триатлоне, работе и сервисах',
+    title: 'itrokit — триатлон и работа в IT',
+    description:
+      'Блог Дмитрия Иноземцева о триатлоне и работе в IT. Создаю сайт с помощью ИИ-агентов.',
     site: context.site!,
     items: sortedPosts.map((post) => ({
       title: post.data.title,

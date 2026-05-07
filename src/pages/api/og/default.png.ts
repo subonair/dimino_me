@@ -1,28 +1,24 @@
 import type { APIRoute } from 'astro';
 import satori from 'satori';
 import { Resvg } from '@resvg/resvg-js';
+import { readFileSync } from 'node:fs';
 
-let fontCache400: ArrayBuffer | null = null;
-let fontCache700: ArrayBuffer | null = null;
+let regularFont: ArrayBuffer | null = null;
+let boldFont: ArrayBuffer | null = null;
 
-async function getFonts(): Promise<{ regular: ArrayBuffer; bold: ArrayBuffer }> {
-  if (!fontCache400 || !fontCache700) {
-    const [regular, bold] = await Promise.all([
-      fetch('https://cdn.jsdelivr.net/fontsource/fonts/roboto@latest/cyrillic-400-normal.ttf').then(
-        (r) => r.arrayBuffer(),
-      ),
-      fetch('https://cdn.jsdelivr.net/fontsource/fonts/roboto@latest/cyrillic-700-normal.ttf').then(
-        (r) => r.arrayBuffer(),
-      ),
-    ]);
-    fontCache400 = regular;
-    fontCache700 = bold;
-  }
-  return { regular: fontCache400!, bold: fontCache700! };
+function loadFont(path: string): ArrayBuffer {
+  const buf = readFileSync(path);
+  return buf.buffer.slice(buf.byteOffset, buf.byteOffset + buf.byteLength);
+}
+
+function getFonts(): { regular: ArrayBuffer; bold: ArrayBuffer } {
+  if (!regularFont) regularFont = loadFont('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf');
+  if (!boldFont) boldFont = loadFont('/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf');
+  return { regular: regularFont, bold: boldFont };
 }
 
 export const GET: APIRoute = async () => {
-  const { regular, bold } = await getFonts();
+  const { regular, bold } = getFonts();
 
   const svg = await satori(
     {
@@ -37,7 +33,7 @@ export const GET: APIRoute = async () => {
           justifyContent: 'center',
           backgroundColor: '#ffffff',
           padding: '60px',
-          fontFamily: 'Roboto',
+          fontFamily: 'DejaVu',
           boxSizing: 'border-box',
         },
         children: [
@@ -64,7 +60,7 @@ export const GET: APIRoute = async () => {
                 marginTop: '20px',
                 lineHeight: 1.5,
               },
-              children: 'Блог об ИИ, триатлоне и работе',
+              children: 'Пишу о триатлоне и работе в IT',
             },
           },
           {
@@ -87,18 +83,8 @@ export const GET: APIRoute = async () => {
       width: 1200,
       height: 630,
       fonts: [
-        {
-          name: 'Roboto',
-          data: regular,
-          weight: 400,
-          style: 'normal',
-        },
-        {
-          name: 'Roboto',
-          data: bold,
-          weight: 700,
-          style: 'normal',
-        },
+        { name: 'DejaVu', data: regular, weight: 400, style: 'normal' },
+        { name: 'DejaVu', data: bold, weight: 700, style: 'normal' },
       ],
     },
   );
