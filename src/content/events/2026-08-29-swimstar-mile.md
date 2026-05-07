@@ -6,6 +6,7 @@ sportType: swim
 status: open
 distances:
     swim: 1.85
+audience: all
 sourceUrl: "https://iron-star.com/event/swimstar-one-mile-zavidovo-2026/"
 prices:
   - category: "Индивидуальное участие"

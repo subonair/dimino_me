@@ -6,6 +6,7 @@ sportType: swim
 status: low
 distances:
     swim: 1
+audience: all
 sourceUrl: "https://iron-star.com/event/swimstar-2k-relay-nizhny-novgorod-2026/"
 prices:
   - category: "Индивидуальное участие"

@@ -1,0 +1,28 @@
+---
+// /events/run → /events/?type=run
+// /events/swim → /events/?type=swim
+// etc.
+// Static redirect pages for clean sport-type URLs.
+
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const events = await getCollection('events');
+  const sportTypes = [...new Set(events.map((e) => e.data.sportType))];
+  return sportTypes.map((sport) => ({
+    params: { sportType: sport },
+  }));
+}
+
+const { sportType } = Astro.params;
+---
+
+<html>
+  <head>
+    <meta http-equiv="refresh" content={`0;url=/events/?type=${sportType}`} />
+    <title>Redirecting…</title>
+  </head>
+  <body>
+    <p>Redirecting to <a href={`/events/?type=${sportType}`}>events</a>…</p>
+  </body>
+</html>

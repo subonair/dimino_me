@@ -13,8 +13,17 @@ interface Props {
   title: string;
   date: Date;
   city: string;
-  sportType: 'triathlon' | 'swimrun' | 'aquathlon' | 'swim' | 'run' | 'bike' | 'duathlon';
+  sportType:
+    | 'triathlon'
+    | 'swimrun'
+    | 'aquathlon'
+    | 'swim'
+    | 'run'
+    | 'bike'
+    | 'duathlon'
+    | 'nordic_walking';
   status: 'open' | 'low' | 'sold_out' | 'waitlist';
+  audience: 'all' | 'men' | 'women' | 'children';
   distances: {
     swim?: number;
     bike?: number;
@@ -30,6 +39,7 @@ const {
   city,
   sportType,
   status,
+  audience,
   distances,
   sourceUrl,
   prices,
@@ -43,6 +53,7 @@ const sportTypeConfig: Record<string, { icon: string; label: string }> = {
   run: { icon: '🏃', label: 'Бег' },
   bike: { icon: '🚴', label: 'Велосипед' },
   duathlon: { icon: '🚴🏃', label: 'Дуатлон' },
+  nordic_walking: { icon: '🥾', label: 'Скандинавская ходьба' },
 };
 
 const formattedDate = date.toLocaleDateString('ru-RU', {
@@ -95,6 +106,12 @@ const externalUrl = sourceUrl || 'https://iron-star.com/event/';
   <div class="mt-0.5 text-xs text-gray-400 flex items-center gap-1">
     <span>{sportTypeConfig[sportType]?.icon}</span>
     <span>{sportTypeConfig[sportType]?.label || sportType}</span>
+    {audience !== 'all' && (
+      <span class="ml-1 text-gray-300">·</span>
+    )}
+    {audience === 'men' && <span class="ml-1">🏃‍♂️ Мужчины</span>}
+    {audience === 'women' && <span class="ml-1">🏃‍♀️ Женщины</span>}
+    {audience === 'children' && <span class="ml-1">🧒 Дети</span>}
   </div>
 
   <!-- Distances -->

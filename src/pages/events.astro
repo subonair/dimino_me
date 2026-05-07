@@ -13,8 +13,18 @@ const now = new Date();
 const upcoming = events.filter((e) => e.data.date >= now);
 const past = events.filter((e) => e.data.date < now);
 
-// Gather all unique sport types
-const allTypes = [...new Set(events.map((e) => e.data.sportType))];
+// Gather all unique filter values
+const allTypes = [...new Set(events.map((e) => e.data.sportType))].sort();
+const allTitles = [...new Set(events.map((e) => e.data.title))].sort();
+const allAudiences = [...new Set(events.map((e) => e.data.audience))].sort();
+
+// Audience display config
+const audienceConfig: Record<string, { icon: string; label: string }> = {
+  all: { icon: '🌐', label: 'Все' },
+  men: { icon: '🏃‍♂️', label: 'Мужчины' },
+  women: { icon: '🏃‍♀️', label: 'Женщины' },
+  children: { icon: '🧒', label: 'Дети' },
+};
 
 const pageSchema = {
   '@context': 'https://schema.org',
@@ -44,29 +54,26 @@ const pageSchema = {
       События по триатлону, бегу и плаванию в России и за её пределами.
     </p>
 
-    <div class="mt-6 bg-blue-50 border border-blue-100 rounded-2xl p-5 text-sm text-gray-700 space-y-3">
+    <div class="mt-6 bg-blue-50 border border-blue-100 rounded-2xl p-5 text-sm text-gray-700">
       <p>
-        Мы собираем старты с <strong>2 источников</strong> —
-        <a href="https://iron-star.com/event/" class="text-blue-600 hover:underline" target="_blank">IronStar</a>
-        и
-        <a href="https://reg.russiarunning.com/" class="text-blue-600 hover:underline" target="_blank">RussiaRunning</a>.
-        База постоянно пополняется.
+        ИИ-агенты собирают старты из открытых источников. База постоянно пополняется. Сейчас в базе 2 источника.
       </p>
-      <p>
+      <p class="mt-2">
         Не нашли свой старт?
         <a href="https://t.me/subonair" class="font-medium text-blue-600 hover:underline" target="_blank">Напишите мне в Telegram</a> —
-        я добавлю новый источник в анализ, и агенты включат его в календарь.
+        я добавлю его в Календарь стартов.
       </p>
     </div>
 
-    <!-- Filter chips (multiselect) -->
-    <div class="mt-8">
+    <!-- Filter: Sport type (multiselect chips) -->
+    <div class="mt-8" id="filter-sport">
       <label class="block text-xs font-medium text-gray-400 uppercase tracking-wide mb-2">Тип занятия</label>
-      <div class="flex flex-wrap gap-2" id="filter-chips">
+      <div class="flex flex-wrap gap-2" id="sport-chips">
         {allTypes.map((type) => (
           <button
-            class="filter-chip px-3 py-1.5 rounded-full text-sm font-medium border transition-colors cursor-pointer bg-blue-50 border-blue-200 text-blue-700"
-            data-type={type}
+            class="filter-chip px-3 py-1.5 rounded-full text-sm font-medium border transition-colors cursor-pointer bg-white border-gray-200 text-gray-500"
+            data-filter="type"
+            data-value={type}
           >
             {type === 'triathlon' && '🏊🚴🏃 Триатлон'}
             {type === 'swim' && '🏊 Плавание'}
@@ -75,8 +82,43 @@ const pageSchema = {
             {type === 'aquathlon' && '🏊🏃 Акватлон'}
             {type === 'swimrun' && '🏊🏃 Swimrun'}
             {type === 'duathlon' && '🚴🏃 Дуатлон'}
+            {type === 'nordic_walking' && '🚶 Сев. ходьба'}
           </button>
         ))}
+      </div>
+    </div>
+
+    <!-- Filter: Distance label (multiselect chips) -->
+    <div class="mt-4" id="filter-distance">
+      <label class="block text-xs font-medium text-gray-400 uppercase tracking-wide mb-2">Дистанция</label>
+      <div class="flex flex-wrap gap-2" id="distance-chips">
+        {allTitles.map((title) => (
+          <button
+            class="filter-chip px-3 py-1.5 rounded-full text-sm font-medium border transition-colors cursor-pointer bg-white border-gray-200 text-gray-500"
+            data-filter="distance"
+            data-value={title}
+          >
+            {title}
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <!-- Filter: Audience (multiselect chips) -->
+    <div class="mt-4" id="filter-audience">
+      <label class="block text-xs font-medium text-gray-400 uppercase tracking-wide mb-2">Участники</label>
+      <div class="flex flex-wrap gap-2" id="audience-chips">
+        {allAudiences
+          .filter((a) => a !== 'all')
+          .map((aud) => (
+            <button
+              class="filter-chip px-3 py-1.5 rounded-full text-sm font-medium border transition-colors cursor-pointer bg-white border-gray-200 text-gray-500"
+              data-filter="audience"
+              data-value={aud}
+            >
+              {audienceConfig[aud]?.icon} {audienceConfig[aud]?.label}
+            </button>
+          ))}
       </div>
     </div>
 
@@ -90,13 +132,19 @@ const pageSchema = {
 
           <div class="mt-4 space-y-2" id="upcoming-list">
             {upcoming.map((event) => (
-              <div class="event-item" data-sport={event.data.sportType}>
+              <div
+                class="event-item"
+                data-type={event.data.sportType}
+                data-distance={event.data.title}
+                data-audience={event.data.audience}
+              >
                 <EventCard
                   title={event.data.title}
                   date={event.data.date}
                   city={event.data.city}
                   sportType={event.data.sportType}
                   status={event.data.status}
+                  audience={event.data.audience}
                   distances={event.data.distances}
                   sourceUrl={event.data.sourceUrl}
                   prices={event.data.prices}
@@ -119,17 +167,23 @@ const pageSchema = {
 
             <div class="mt-4 space-y-2" id="past-list">
               {past.map((event) => (
-                <div class="event-item" data-sport={event.data.sportType}>
-                  <EventCard
-                    title={event.data.title}
-                    date={event.data.date}
-                    city={event.data.city}
-                    sportType={event.data.sportType}
-                    status={event.data.status}
-                    distances={event.data.distances}
-                    sourceUrl={event.data.sourceUrl}
-                    prices={event.data.prices}
-                  />
+                <div
+                  class="event-item"
+                data-type={event.data.sportType}
+                data-distance={event.data.title}
+                data-audience={event.data.audience}
+              >
+                <EventCard
+                  title={event.data.title}
+                  date={event.data.date}
+                  city={event.data.city}
+                  sportType={event.data.sportType}
+                  status={event.data.status}
+                  audience={event.data.audience}
+                  distances={event.data.distances}
+                  sourceUrl={event.data.sourceUrl}
+                  prices={event.data.prices}
+                />
                 </div>
               ))}
             </div>
@@ -152,18 +206,110 @@ const pageSchema = {
   const chips = document.querySelectorAll('.filter-chip');
   const eventItems = document.querySelectorAll('.event-item');
 
-  function updateFilters() {
-    const active = new Set<string>();
-    chips.forEach((c) => {
-      if (c.classList.contains('bg-blue-50')) active.add((c as HTMLElement).dataset.type!);
+  const activeStyles = ['bg-blue-50', 'border-blue-200', 'text-blue-700'];
+  const inactiveStyles = ['bg-white', 'border-gray-200', 'text-gray-500'];
+
+  // Parse URL params on load
+  function getParams(): Record<string, Set<string>> {
+    const params: Record<string, Set<string>> = {};
+    const search = new URLSearchParams(window.location.search);
+    for (const [key, value] of search.entries()) {
+      if (!params[key]) params[key] = new Set();
+      params[key].add(value);
+    }
+    // Also check path: /events/run → type=run
+    const pathMatch = window.location.pathname.match(/^\/events\/([a-z]+)\/?$/);
+    if (pathMatch) {
+      const sport = pathMatch[1];
+      if (!params['type']) params['type'] = new Set();
+      params['type'].add(sport);
+    }
+    return params;
+  }
+
+  function setParams(params: Record<string, Set<string>>) {
+    const hasTypeOnly =
+      params.type?.size === 1 && !params.distance && !params.audience;
+    if (hasTypeOnly) {
+      // Clean URL: /events/run/
+      const type = [...params.type!][0];
+      window.history.replaceState(null, '', `/events/${type}/`);
+    } else {
+      // Query params: /events/?type=run&distance=olympic
+      const search = new URLSearchParams();
+      for (const [key, values] of Object.entries(params)) {
+        for (const v of values) {
+          search.append(key, v);
+        }
+      }
+      const qs = search.toString();
+      const url = `/events/${qs ? '?' + qs : ''}`;
+      window.history.replaceState(null, '', url);
+    }
+  }
+
+  // Initialize chips from URL params
+  function initFromUrl() {
+    const params = getParams();
+    chips.forEach((chip) => {
+      const filterType = (chip as HTMLElement).dataset.filter!;
+      const value = (chip as HTMLElement).dataset.value!;
+      if (params[filterType]?.has(value)) {
+        activateChip(chip);
+      }
     });
+    updateFilters();
+  }
+
+  function activateChip(chip: Element) {
+    chip.classList.remove(...inactiveStyles);
+    chip.classList.add(...activeStyles);
+  }
+
+  function deactivateChip(chip: Element) {
+    chip.classList.remove(...activeStyles);
+    chip.classList.add(...inactiveStyles);
+  }
+
+  function isActiveChip(chip: Element): boolean {
+    return chip.classList.contains('bg-blue-50');
+  }
+
+  function getActiveFilters(): Record<string, Set<string>> {
+    const filters: Record<string, Set<string>> = {};
+    chips.forEach((chip) => {
+      if (isActiveChip(chip)) {
+        const filterType = (chip as HTMLElement).dataset.filter!;
+        const value = (chip as HTMLElement).dataset.value!;
+        if (!filters[filterType]) filters[filterType] = new Set();
+        filters[filterType].add(value);
+      }
+    });
+    return filters;
+  }
+
+  function updateFilters() {
+    const active = getActiveFilters();
+    const hasType = active.type?.size > 0;
+    const hasDistance = active.distance?.size > 0;
+    const hasAudience = active.audience?.size > 0;
+    const hasAnyFilter = hasType || hasDistance || hasAudience;
 
     let upcomingVisible = 0;
     let pastVisible = 0;
 
     eventItems.forEach((el) => {
-      const sport = (el as HTMLElement).dataset.sport!;
-      if (active.has(sport)) {
+      const type = (el as HTMLElement).dataset.type!;
+      const distance = (el as HTMLElement).dataset.distance!;
+      const audience = (el as HTMLElement).dataset.audience!;
+
+      // Show if ALL active filters match (AND between groups, OR within group)
+      const typeMatch = !hasType || active.type!.has(type);
+      const distanceMatch = !hasDistance || active.distance!.has(distance);
+      // Audience: "all" events should show for any audience filter
+      const audienceMatch = !hasAudience || active.audience!.has(audience) || audience === 'all';
+
+      if ((hasAnyFilter && typeMatch && distanceMatch && audienceMatch) || !hasAnyFilter) {
         (el as HTMLElement).style.display = '';
         const section = el.closest('#upcoming-list, #past-list');
         if (section?.id === 'upcoming-list') upcomingVisible++;
@@ -174,27 +320,32 @@ const pageSchema = {
     });
 
     // Update counts
-    document.getElementById('upcoming-count')!.textContent = String(upcomingVisible);
-    document.getElementById('past-count')!.textContent = String(pastVisible);
+    const uc = document.getElementById('upcoming-count');
+    const pc = document.getElementById('past-count');
+    if (uc) uc.textContent = String(upcomingVisible);
+    if (pc) pc.textContent = String(pastVisible);
 
     // Hide sections if empty
     const upcomingSection = document.getElementById('upcoming-section');
     const pastSection = document.getElementById('past-section');
     if (upcomingSection) upcomingSection.style.display = upcomingVisible > 0 ? '' : 'none';
     if (pastSection) pastSection.style.display = pastVisible > 0 ? '' : 'none';
+
+    // Update URL
+    setParams(active);
   }
 
   chips.forEach((chip) => {
     chip.addEventListener('click', () => {
-      const isActive = chip.classList.contains('bg-blue-50');
-      if (isActive) {
-        chip.classList.remove('bg-blue-50', 'border-blue-200', 'text-blue-700');
-        chip.classList.add('bg-white', 'border-gray-200', 'text-gray-500');
+      if (isActiveChip(chip)) {
+        deactivateChip(chip);
       } else {
-        chip.classList.remove('bg-white', 'border-gray-200', 'text-gray-500');
-        chip.classList.add('bg-blue-50', 'border-blue-200', 'text-blue-700');
+        activateChip(chip);
       }
       updateFilters();
     });
   });
+
+  // Initialize from URL on page load
+  initFromUrl();
 </script>

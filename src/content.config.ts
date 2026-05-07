@@ -18,13 +18,14 @@ const events = defineCollection({
     title: z.string(),
     date: z.date(),
     city: z.string(),
-    sportType: z.enum(['triathlon', 'swimrun', 'aquathlon', 'swim', 'run', 'bike', 'duathlon']),
+    sportType: z.enum(['triathlon', 'swimrun', 'aquathlon', 'swim', 'run', 'bike', 'duathlon', 'nordic_walking']),
     status: z.enum(['open', 'low', 'sold_out', 'waitlist']),
     distances: z.object({
       swim: z.number().optional(),
       bike: z.number().optional(),
       run: z.number().optional(),
     }),
+    audience: z.enum(['all', 'men', 'women', 'children']).default('all'),
     sourceUrl: z.string().optional(),
     prices: z
       .array(
