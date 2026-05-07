@@ -1,11 +1,12 @@
 ---
-title: x402 — платёжный протокол EmDash (28.04.26)
 created: 2026-04-28
 status: черновик
-publish-to: [telegram]
-tags: [EmDashCMS]
+publish_to:
+  - telegram
+tags:
+  - EmDashCMS
+  - протоколы
 ---
-# x402 — платёжный протокол EmDash (28.04.26)
 
 > [!quote]- Оригинал (голосовая заметка)
 > *(нет голосового оригинала)*
@@ -13,5 +14,5 @@ tags: [EmDashCMS]
 ## Переписанный вариант
 
 В EmDash есть отдельный пакет — @emdash-cms/x402. Это HTTP 402 Payment Required для монетизации контента. Не про магазины, а про «заплати за доступ к странице». Микроплатежи поверх Astro.
-#EmDashCMS
-#EmDashCMS
+
+#EmDashCMS #протоколы

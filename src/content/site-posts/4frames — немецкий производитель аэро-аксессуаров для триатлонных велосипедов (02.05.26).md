@@ -1,11 +1,13 @@
 ---
-title: 4frames: аэро-апгрейд для триатлонного байка из Германии
 created: 2026-05-02
 status: черновик
-publish-to: [site]
-tags: []
+publish_to:
+  - site
+tags:
+  - триатлон
+  - вело
+  - снаряжение
 ---
-# 4frames: аэро-апгрейд для триатлонного байка из Германии
 
 > [!quote]- Оригинал (голосовая заметка)
 > *(нет голосового оригинала)*
@@ -103,3 +105,5 @@ tags: []
 - [Cults3D: triathlon storage box models](https://cults3d.com/en/search?q=triathlon+storage+box)
 - [Profile Design](https://www.profile-design.com)
 
+
+#триатлон #вело #снаряжение
