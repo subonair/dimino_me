@@ -6,6 +6,7 @@ sportType: run
 status: open
 distances:
     run: 60
+audience: all
 sourceUrl: "https://myrace.info/events/1716"
 prices:
   - category: "Стандарт"

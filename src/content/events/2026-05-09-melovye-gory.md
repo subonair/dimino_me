@@ -6,6 +6,7 @@ sportType: bike
 status: sold_out
 distances:
     bike: 150
+audience: all
 sourceUrl: "https://myrace.info/events/1631"
 prices:
   - category: "Спорт"

@@ -6,6 +6,7 @@ sportType: bike
 status: open
 distances:
     bike: 15
+audience: all
 sourceUrl: "https://myrace.info/events/1641"
 prices:
   - category: "Спорт — мужчины/женщины 18+"

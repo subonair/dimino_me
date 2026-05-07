@@ -6,6 +6,7 @@ sportType: swim
 status: open
 distances:
     swim: 2.0
+audience: all
 sourceUrl: "https://myrace.info/events/1518"
 prices:
   - category: "Стандарт"
