@@ -11,7 +11,9 @@
     "lint": "eslint src/",
     "preview": "astro preview",
     "astro": "astro",
-    "sync": "./sync-obsidian.sh"
+    "sync": "./sync-obsidian.sh",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.18",
@@ -28,6 +30,7 @@
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-astro": "^1.7.0",
     "prettier-plugin-astro": "^0.14.1",
-    "typescript-eslint": "^8.59.2"
+    "typescript-eslint": "^8.59.2",
+    "vitest": "^4.1.5"
   }
 }
