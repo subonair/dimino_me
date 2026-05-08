@@ -7,8 +7,6 @@ date: 2026-05-05
 category: ai
 ---
 
-# Claude Desktop и Ollama Cloud
-
 Ollama 0.23 научилась встраиваться в Claude Desktop как провайдер моделей. Одна команда, и в селекторе моделей
 появляются qwen, gemma, kimi, ministral — прямиком из Ollama Cloud.
 
