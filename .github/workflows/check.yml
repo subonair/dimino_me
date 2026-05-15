@@ -48,7 +48,7 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
-          ssh-keyscan -H 146.103.40.30 >> ~/.ssh/known_hosts
+          echo "146.103.40.30 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHlOkXWQ0I8jlO3Qka7jExbWSFP+vuhQEKAnz8h/RQ8t" >> ~/.ssh/known_hosts
 
       - run: |
           ssh -i ~/.ssh/deploy_key root@146.103.40.30 'cd /root/projects/dimino_me && bash deploy.sh'
