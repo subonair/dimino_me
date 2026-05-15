@@ -2,6 +2,7 @@ import type { APIRoute } from 'astro';
 import satori from 'satori';
 import { Resvg } from '@resvg/resvg-js';
 import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 
 let regularFont: ArrayBuffer | null = null;
 let boldFont: ArrayBuffer | null = null;
@@ -12,8 +13,16 @@ function loadFont(path: string): ArrayBuffer {
 }
 
 function getFonts(): { regular: ArrayBuffer; bold: ArrayBuffer } {
-  if (!regularFont) regularFont = loadFont('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf');
-  if (!boldFont) boldFont = loadFont('/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf');
+  if (!regularFont) {
+    regularFont = loadFont(
+      join(process.cwd(), 'node_modules/@fontsource/roboto/files/roboto-cyrillic-400-normal.woff'),
+    );
+  }
+  if (!boldFont) {
+    boldFont = loadFont(
+      join(process.cwd(), 'node_modules/@fontsource/roboto/files/roboto-cyrillic-700-normal.woff'),
+    );
+  }
   return { regular: regularFont, bold: boldFont };
 }
 
@@ -33,7 +42,7 @@ export const GET: APIRoute = async () => {
           justifyContent: 'center',
           backgroundColor: '#ffffff',
           padding: '60px',
-          fontFamily: 'DejaVu',
+          fontFamily: 'Roboto',
           boxSizing: 'border-box',
         },
         children: [
@@ -83,8 +92,8 @@ export const GET: APIRoute = async () => {
       width: 1200,
       height: 630,
       fonts: [
-        { name: 'DejaVu', data: regular, weight: 400, style: 'normal' },
-        { name: 'DejaVu', data: bold, weight: 700, style: 'normal' },
+        { name: 'Roboto', data: regular, weight: 400, style: 'normal' },
+        { name: 'Roboto', data: bold, weight: 700, style: 'normal' },
       ],
     },
   );
