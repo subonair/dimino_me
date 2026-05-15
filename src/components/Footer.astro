@@ -1,10 +1,16 @@
 ---
 const year = new Date().getFullYear();
+
+interface Props {
+  containerClass?: string;
+}
+
+const { containerClass = 'max-w-3xl' } = Astro.props;
 ---
 
 <footer class="border-t border-gray-100 bg-white mt-16">
   <div
-    class="max-w-3xl mx-auto px-4 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-500"
+    class={`${containerClass} mx-auto px-4 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-500`}
   >
     <p>© {year} itrokit. Все права защищены.</p>
     <nav class="flex items-center gap-4" aria-label="Навигация в подвале">
