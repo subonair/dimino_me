@@ -51,4 +51,4 @@ jobs:
           echo "146.103.40.30 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHlOkXWQ0I8jlO3Qka7jExbWSFP+vuhQEKAnz8h/RQ8t" >> ~/.ssh/known_hosts
 
       - run: |
-          ssh -i ~/.ssh/deploy_key root@146.103.40.30 'cd /root/projects/dimino_me && bash deploy.sh'
+          ssh -o BatchMode=yes -o ConnectTimeout=20 -o ServerAliveInterval=15 -o ServerAliveCountMax=3 -i ~/.ssh/deploy_key root@146.103.40.30 'cd /root/projects/dimino_me && bash deploy.sh'
