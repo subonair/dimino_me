@@ -36,3 +36,19 @@ jobs:
       - run: npm run lint
 
       - run: npm run build
+
+  deploy:
+    needs: lint-and-build
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H 146.103.40.30 >> ~/.ssh/known_hosts
+
+      - run: |
+          ssh -i ~/.ssh/deploy_key root@146.103.40.30 'cd /root/projects/dimino_me && bash deploy.sh'
